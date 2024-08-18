@@ -6,7 +6,8 @@ from shiny import module
 
 from modules.custom_ui.about_company_box import about_company_box
 from shared import df
-import os
+
+
 
 date_joined_date_range_params = {
     "min": df["date_joined"].min(),
@@ -31,7 +32,7 @@ valuation_slider_params = {
     "value": (df_min_valuation, df_max_valuation)
 }
 
-two_days = timedelta(days=2)
+#two_days = timedelta(days=2)
 
 # pattern = r',[^,]|(?<![T, Co, Ltd, Corp, Inc, U, S, e.])\.\s*|,,\s*'
 # df_dropna_investors = df.dropna(subset=["investors"])
@@ -77,7 +78,7 @@ def nav_panel_table_ui(name: str):
             ui.input_slider("valuation", "Valuation", step=1, **valuation_slider_params),
             # ui.input_date_range("date_joined_slider", "Date", **date_joined_date_range_params),
             ui.input_slider("date_joined_slider", "Date Joined", time_format="%Y-%m",
-                            **date_joined_slider_params, timezone="+0200"),
+                            **date_joined_slider_params),
             # слайдер для фильтра по дате
             ui.input_select("country", "Country", choices=df["country"].unique().tolist(),
                             selectize=True,
@@ -103,7 +104,7 @@ def nav_panel_table_ui(name: str):
                     ui.tags.b("CTRL + left mouse button"),
                     " to select or deselect multiple table rows to see more information about company"
                 ),
-                title="Select rows",
+                title="Hint: select rows",
                 style="text-align: right; font-size: 1.2rem; color: #23669d",
             ),
             # ui.input_switch("save_selected_rows_switch", "Save rows?"),
@@ -115,7 +116,7 @@ def nav_panel_table_ui(name: str):
         ui.output_data_frame("tbl"),
         ui.output_ui("clearrowspanel"),
         ui.output_ui("tbl_row_output"),
-        icon=ui.tags.i({"class": "lni lni-notepad"})
+        icon=ui.tags.i({"class": "lni lni-layout"})
     )
 
 
@@ -126,9 +127,11 @@ def nav_panel_table_server(input: Inputs, output: Outputs, session: Session):
     @reactive.calc
     def selected_table():
         dates = input.date_joined_slider()
-        # даты, кот. приходят из слайдера, на 1 час меньше реальных дат, кот. передаются в слайдер. Поэтому, даты из слайдера после "округления" не совпадают на 1 день с реальными датами. Чтобы это исправить, дорабатываю даты из слайдена так: отнимаю 2 дня от начальной даты и прибаляю 2 дня к конечной дате. Это просто расширяет диапазон дат, по которым берутся данные из дата фрейма.
-        start_time = dates[0] - two_days
-        end_time = dates[1] + two_days
+        # На локальной машине даты, кот. приходят из слайдера, на 1 час меньше реальных дат, кот. передаются в слайдер. Поэтому, даты из слайдера после "округления" не совпадают на 1 день с реальными датами. Чтобы это исправить, дорабатываю даты из слайдена так: отнимаю 2 дня от начальной даты и прибаляю 2 дня к конечной дате. Это просто расширяет диапазон дат, по которым берутся данные из дата фрейма.
+        #start_time = dates[0] - two_days
+        #end_time = dates[1] + two_days
+        start_time = dates[0]
+        end_time = dates[1]
         # print(start_time)
         # print(end_time)
         # print(dates[0])
@@ -199,8 +202,7 @@ def nav_panel_table_server(input: Inputs, output: Outputs, session: Session):
             date_table,
             selection_mode="rows",
             height="550px",
-            width="100%",
-            summary="Anzeigen der Zeilen {start} bis {end} von {total}"
+            width="100%"
         )
 
     @render.ui
@@ -258,10 +260,15 @@ def nav_panel_table_server(input: Inputs, output: Outputs, session: Session):
     @reactive.event(input.companys, input.country, input.city, input.industry, input.valuation,
                     input.date_joined_slider, input.investors)
     def _():
-        if input.companys() or input.country() or input.investors() or input.city() or input.industry() or input.valuation() != \
-                valuation_slider_params["value"] or (
-                input.date_joined_slider()[0] + timedelta(days=1), input.date_joined_slider()[1] + timedelta(days=1)) != \
-                date_joined_slider_params["value"]:
+        # timedelta(days=1) прибавляю 1 день, т.к. из слайдера приходят даты на 1-2 часа меньше реальных. Проблема выходит на локальной машине. Думаю, что проблема из-за часовых поясов, при заливке на сервер shinyapps проблема исчезает, т.к. сервер бежит в USA. Если запускаешь на локальной машине, то замени input.date_joined_slider() != date_joined_slider_params["value"] на
+        #(input.date_joined_slider()[0] + timedelta(days=1), input.date_joined_slider()[1] + timedelta(days=1)) != date_joined_slider_params["value"]
+        if input.companys() \
+                or input.country() \
+                or input.investors() \
+                or input.city() \
+                or input.industry() \
+                or input.valuation() != valuation_slider_params["value"] \
+                or input.date_joined_slider() != date_joined_slider_params["value"]:
             ui.update_action_button("cleat_filter_btn", disabled=False)
         else:
             ui.update_action_button("cleat_filter_btn", disabled=True)

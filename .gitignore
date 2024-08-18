@@ -130,3 +130,5 @@ dmypy.json
 .idea/
 
 *.csv
+*training*.py
+rsconnect-python

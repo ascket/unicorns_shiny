@@ -1,1 +1,2 @@
-# Домашнее задание otus: 3. Погружение в Python. ООП
+# Project Unicorns
+Query of data: [Cbinsights](https://www.cbinsights.com/research-unicorn-companies)

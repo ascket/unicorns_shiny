@@ -7,7 +7,7 @@
 
 from shiny import App, Inputs, Outputs, Session, ui
 
-from modules import nav_panel_table_ui, nav_panel_table_server, nav_panel_map_ui, nav_panel_map_server, nav_panel_investors_ui, nav_panel_investors_server
+from modules import nav_panel_table_ui, nav_panel_table_server, nav_panel_map_ui, nav_panel_map_server, nav_panel_investors_ui, nav_panel_investors_server, nav_panel_about_server, nav_panel_about_ui
 from shared import www_dir
 
 app_ui = ui.page_fluid(
@@ -23,18 +23,7 @@ app_ui = ui.page_fluid(
         nav_panel_table_ui("nav_panel_table", "Table"),
         nav_panel_map_ui("nav_panel_map", "Map"),
         nav_panel_investors_ui("nav_panel_investors", "Investors"),
-        ui.nav_panel(ui.tags.span("Services"), "Our Services", icon=ui.tags.i({"class": "lni lni-service"})),
-        ui.nav_panel(ui.tags.span("Blog"),
-                     ui.tags.h1("This is blog content"),
-                     ui.card(
-                         ui.card_header(
-                             "This is my first card"
-                         ),
-                         ui.tags.h2("First card content"),
-                         class_="card text-white bg-danger mb-3"
-                     ),
-                     icon=ui.tags.i({"class": "lni lni-graph"})
-                     ),
+        nav_panel_about_ui("nav_panel_about", "About"),
         widths=(2, 10),
         header=ui.TagList(
             ui.tags.div(
