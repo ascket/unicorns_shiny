@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://cdn.lineicons.com/4.0/lineicons.css');
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.col-sm-2.well {
+    /*width: 15%;*/
+    background: #0e2238;
+    padding: 0;
+}
+
+.col-sm-10{
+    min-height: 100vh;
+    /*width: 85%;*/
+    overflow: hidden;
+    background-color: #fafbfe;
+    padding: 0;
+}
+
+/* Иначе появляется ненужное растягивание секции ul с этими классами вниз при использовании ui.value_box(), т.к. этот виджет добавляет стиль height: 100% для этого ul */
+.nav.nav-pills.nav-stacked{
+    height: auto !important;
+}
+
+@media (min-width: 840px) {
+    .col-sm-10.expand {
+        width: 90%;
+    }
+
+    .col-sm-2.well.expand {
+        width: 10%;
+        min-width: 10%;
+    }
+
+    /*body > div > div > div.col-sm-2.well.expand > div > div,*/
+    .col-sm-2.well.expand .sidebar-logo,
+    .col-sm-2.well.expand a.nav-link span {
+        display: none;
+    }
+
+    .d-flex{
+        border-bottom: 1px solid #dee2e6;
+        padding: .7rem 1rem .7rem 1rem;
+    }
+
+    .col-sm-2 .d-flex{
+        /*border-bottom: 1px solid #4c545c;*/
+        padding: 1rem 1.5rem 1.6rem 1.4rem;
+        border: none;
+        flex-wrap: wrap;
+    }
+
+    .col-sm-2.well.expand .d-flex{
+        justify-content: center;
+        padding-top: 1rem;
+    }
+
+    .toggle-btn {
+        background-color: transparent;
+        cursor: pointer;
+        border: 0;
+        padding: .25rem 0 0 0;
+    }
+
+    .toggle-btn i {
+        font-size: 2rem;
+        color: #0e2238;
+    }
+
+    .col-sm-2 .d-flex i {
+        font-size: 2.1rem;
+        color: #fafbfe;
+        margin-right: .75rem;
+    }
+
+    .toggle-btn i:hover {
+        font-size: 2rem;
+        color: #2a7cc4;
+    }
+
+    .col-sm-2.well.expand a.nav-link i{
+        margin-right: 0;
+    }
+
+    .col-sm-2.well.expand{
+        text-align: center;
+    }
+
+    .col-sm-2.well.expand .d-flex i{
+        /*margin: 0 auto 5px;*/
+        margin: auto 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .col-sm-10.expand {
+        width: 92%;
+    }
+
+    .col-sm-2.well.expand {
+        width: 8%;
+        min-width: 8%;
+    }
+}
+
+@media (min-width: 1390px) {
+    .col-sm-10.expand {
+        width: 94%;
+    }
+
+    .col-sm-2.well.expand {
+        width: 6%;
+        min-width: 6%;
+    }
+}
+
+@media (min-width: 1650px) {
+    .col-sm-10.expand {
+        width: 95%;
+    }
+
+    .col-sm-2.well.expand {
+        width: 5%;
+        min-width: 5%;
+    }
+}
+
+@media (min-width: 2006px) {
+    .col-sm-10.expand {
+        width: 96%;
+    }
+
+    .col-sm-2.well.expand {
+        width: 4%;
+        min-width: 4%;
+    }
+}
+
+@media (max-width: 840px) {
+    .toggle-btn, .col-sm-2 .d-flex i{
+        display: none;
+    }
+
+    .sidebar-logo{
+        width: 100%;
+        padding: 10px 20px 15px 20px;
+    }
+}
+
+ul.nav.nav-pills{
+    padding: 0 15px 15px 15px;
+}
+
+.nav-link, .nav-tabs>li>a, .nav-pills>li>a{
+    color: #fafbfe;
+}
+
+.nav-link, .nav-tabs>li>a, .nav-pills>li>a:hover {
+    color: #76a8e3;
+}
+
+.nav-pills .nav-link.active, .nav-pills .nav-tabs>li>a.active, .nav-pills>li>a.active{
+    color: #fafbfe;
+}
+
+.nav-link i, .header-flex i {
+    font-size: 1.1rem;
+    margin-right: .75rem;
+}
+
+.tab-content{
+    padding: 1rem;
+}
+
+.nav-item {
+    width: 100%;
+    padding: 0 0 7px 0;
+}
+
+.sidebar-logo {
+    /*margin: auto 0;*/
+    margin: 5px 0 0 0;
+}
+
+.sidebar-logo a {
+    color: #FFF;
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* hover меню справа, рабочий, добавляет границу при наведении на ссылку меню
+a.nav-link:hover {
+    background-color: rgba(255, 255, 255, .075);
+    border-left: 3px solid #3b7ddd;
+}*/
+
+
+.box-success {
+    border-top: 4px solid #2a7cc4;
+}
+
+.box-body {
+    border-radius: 0 0 3px 3px;
+    padding: 0 0 12px 0;
+}
+
+.box-body.box-profile {
+    padding-bottom: 0;
+}
+
+.profile-username {
+    font-weight: 600;
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.list-group.list-group-unbordered {
+    margin-top: 30px;
+}
+
+/*.list-group {
+    padding-left: 0;
+    margin-bottom: 20px;
+}*/
+
+.list-group-unbordered>.list-group-item {
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 14px;
+    /*margin-bottom: -1px;*/
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.custom-user-img {
+    margin: auto;
+    /* width: 100px; */
+    /* padding: 3px; */
+    /* border: 0; */
+    max-height: 120px;
+    max-width: 140px;
+    position: absolute;
+    /* display: block; */
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.img-wrapper {
+    width: 200px;
+    height: 150px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    position: relative;
+}
+
+.pull-right {
+    float: right !important;
+    margin: 0 0 10px;
+}
+
+.nav-text{
+    vertical-align: text-bottom;
+    font-size: 16px;
+    margin-left: 10px;
+    font-family: 'Poppins', serif;
+    font-weight: 700;
+}
+
+.box-body i {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.box-body hr{
+    margin: 1.3rem 0;
+}
+
+.bslib-value-box .value-box-showcase .fa{
+    opacity: 1!important;
+}
+
+
+div.company-table-value-box > div > div > div.value-box-showcase.html-fill-item.html-fill-container{
+    background: #08659b;
+    padding: 4rem!important;
+}
+
+
+#clearrowspanel{
+    padding-bottom: 5px;
+    padding-top: 20px;
+}
+
+.popover {
+    --bs-popover-header-bg: #112239;
+    --bs-popover-header-color: #fff;
+}
+
+.popover .btn-close {
+    filter: var(--bs-btn-close-white-filter);
+}
+
+.shiny-input-container .radio-inline input:checked {
+    background-color: #112239;
+}
+
+
+.shiny-data-grid.shiny-data-grid-grid > table > thead > tr > th, .shiny-data-grid.shiny-data-grid-grid > table > thead > tr > td{
+    background-color: #2a7cc4!important;
+    color: white;
+}
