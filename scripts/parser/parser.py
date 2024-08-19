@@ -9,6 +9,9 @@ from requests import HTTPError
 from fake_useragent import UserAgent
 from scripts.parser.models import CompanyFull, CompanyFinancials, CompanyOverview
 from scripts.parser.iso_continent_codes import iso_alpha_dict, continents_dict
+import re
+
+INVESTORS_SPLIT_PATTERN = r',[^,]|(?<![T, Co, Ltd, Corp, Inc, U, S, e.])\.\s*|,,\s*'
 
 
 class Parser:
@@ -172,8 +175,10 @@ class Parser:
                     cb_company_url: str = all_td[0].find("a").attrs["href"]
                 overview = self.get_overview(cb_company_url)
                 valuation: float = float(all_td[1].text.replace("$", ""))
-                date_joined: datetime = datetime.strptime(all_td[2].text,
+                date_str = all_td[2].text
+                date_joined: datetime = datetime.strptime(date_str,
                                                           '%m/%d/%Y')  # чтобы парсить дату сразу в формате даты. Но в этом случае дата в таблице в дашборде выходит в некрасивом формате
+                month_joined, day_joined, year_joined = date_str.split("/")
                 # date_joined: str = all_td[2].text
                 city: str = all_td[4].text
                 country: str = all_td[3].text if city != "Hong Kong" else "Hong Kong"
@@ -187,7 +192,7 @@ class Parser:
                         company_name=company_name,
                         valuation=valuation,
                         date_joined=date_joined,
-                        country=country,
+                        country=country if country != "" else "Singapore", #у единственной компании Quest Global пропущена страна, поэтому Singapore
                         city=city,
                         industry=industry,
                         investors=investors,
@@ -203,7 +208,10 @@ class Parser:
                         financials_investors_count=financials.financials_investors_count,
                         financials_investments=financials.financials_investments,
                         iso_alpha=iso_alpha,
-                        continent=continent
+                        continent=continent,
+                        year_joined=year_joined,
+                        month_joined=month_joined,
+                        day_joined=day_joined
                     )
                 )
             print(f"Companies [{start}: {stop}] was downloaded!")
@@ -254,8 +262,10 @@ class Parser:
                     cb_company_url: str = all_td[0].find("a").attrs["href"]
                 overview = self.get_overview(cb_company_url)
                 valuation: float = float(all_td[1].text.replace("$", ""))
-                date_joined: datetime = datetime.strptime(all_td[2].text,
+                date_str = all_td[2].text
+                date_joined: datetime = datetime.strptime(date_str,
                                                           '%m/%d/%Y')  # чтобы парсить дату сразу в формате даты. Но в этом случае дата в таблице в дашборде выходит в некрасивом формате
+                month_joined, day_joined, year_joined = date_str.split("/")
                 # date_joined: str = all_td[2].text
                 city: str = all_td[4].text
                 country: str = all_td[3].text if city != "Hong Kong" else "Hong Kong"
@@ -285,7 +295,10 @@ class Parser:
                         financials_investors_count=financials.financials_investors_count,
                         financials_investments=financials.financials_investments,
                         iso_alpha=iso_alpha,
-                        continent=continent
+                        continent=continent,
+                        year_joined=year_joined,
+                        month_joined=month_joined,
+                        day_joined=day_joined
                     )
                 )
                 print(f"Company {company_name} was downloaded!")
@@ -306,13 +319,16 @@ class Parser:
             self.set_full_company_info_one_by_one(how_many_companiest_to_parse)
         return self.all_companies
 
-    def write_results_as_csv(self, file_name: str):
+    def write_results_as_csv(self, file_name: str) -> None:
+        """
+        Записывает общие результаты для ТАБЛИЦЫ в csv-файл. В получившемся csv-файле должен быть столбец investors_list с данными в формате list, но формат list не может быть записан в формат csv. Поэтому, основной метод для записи файлов - write_results_as_csv_with_pandas. В этом методе я сначала перегоняю данные из парсера в pd.DataFrame, сохраняю этот дата фрейм в csv файл, потом добавляю в этот дата фрейм столбец investors_list и делаю из дополненного дата фрейма ещё 2 дата фрейма для карты и инвесторов.
+        """
         if len(self.all_companies) == 0:
             raise AttributeError("First run get_full_company_info()-function to collect all companies")
 
         import csv
         with open(f"{file_name}.csv", "w", newline='', encoding='utf-8') as file_names:
-            writer = csv.writer(file_names)
+            writer = csv.writer(file_names, quoting=csv.QUOTE_MINIMAL)
             writer.writerow(CompanyFull.__dict__["__annotations__"].keys())  # шапка (если нужна шапка)
             for company in self.all_companies:
                 # writer.writerow(company._asdict().values())
@@ -336,9 +352,33 @@ class Parser:
                     company.financials_investors_count,
                     company.financials_investments,
                     company.iso_alpha,
-                    company.continent
+                    company.continent,
+                    company.year_joined,
+                    company.month_joined,
+                    company.day_joined
                 ])
         print("Data is saved in the .csv-file")
+
+    def write_results_as_csv_with_pandas(self, file_name: str) -> None:
+        """
+        Основной метод для записи данних и создания дата фреймов
+        """
+        import pandas as pd
+        from scripts import map_data_frame, investor_industry_data_frame
+        from time import sleep
+        pattern = r',[^,]|(?<![T, Co, Ltd, Corp, Inc, U, S, e.])\.\s*|,,\s*'
+        #self.write_results_as_csv(file_name)
+        df_from_parser = pd.DataFrame(self.all_companies)
+        df_from_parser.to_csv(f"{file_name}.csv", index=False)
+        print(f"{file_name}.csv saved")
+        df_from_parser["investors_list"] = df_from_parser["investors"].str.rstrip(",").str.replace("\t", "").str.split(pat=pattern)
+        df_for_map = map_data_frame(df_from_parser)
+        df_for_investors = investor_industry_data_frame(df_from_parser)
+        df_for_map.to_csv("map_df.csv", index=False)
+        print(f"map_df.csv saved")
+        df_for_investors.to_csv("investors_df.csv", index=False)
+        print(f"investors_df.csv saved")
+
 
     def __len__(self):
         return len(self.all_companies)
@@ -348,35 +388,6 @@ parser4 = Parser()
 all4 = parser4.get_full_company_info_threading()
 # all4 = parser4.get_full_company_info_one_by_one()
 
-# %%
-import pandas as pd
+#%%
+parser4.write_results_as_csv_with_pandas("unicorns")
 
-pdf = pd.DataFrame(all4)
-print(pdf)
-
-# %%
-pdf.to_csv("from_pandas.csv", index=False)
-
-# %%
-parser4.write_results_as_csv(file_name="unicorns")
-
-# %%
-companies_with_wrong_overview_url = [company.company_name for company in all if company.company_url is None]
-right_overwiew_url = [
-    "https://www.cbinsights.com/company/moon-active",
-    "https://www.cbinsights.com/company/bolttech",
-    "https://www.cbinsights.com/company/printful-1",
-    None,
-    "https://www.cbinsights.com/company/reef-technology",
-    "https://www.cbinsights.com/company/21e6",
-    None,
-    "https://www.cbinsights.com/company/peopleai",
-    "https://www.cbinsights.com/company/lambda-labs-1",
-    None,
-    "https://www.cbinsights.com/company/articulate-1",
-    "https://www.cbinsights.com/company/island-2",
-    "https://www.cbinsights.com/company/imbue-ai"
-]
-
-companies_right_overview_url = {key: value for key, value in zip(companies_with_wrong_overview_url, right_overwiew_url)}
-print(companies_right_overview_url)

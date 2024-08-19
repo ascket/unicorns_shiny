@@ -4,9 +4,7 @@ from shiny import Inputs, Outputs, Session, ui, module, reactive, render
 from shinywidgets import render_plotly, output_widget
 
 from scripts import company_per_year_data_frame
-from shared import get_df_for_map, df, blue_color_main
-
-df_for_map = get_df_for_map()
+from shared import df, blue_color_main, df_for_map
 
 COUNTRY_CONTINENT_MAP = {
     "Country": "country",
@@ -97,7 +95,7 @@ def nav_panel_map_server(input: Inputs, output: Outputs, session: Session):
                 texttemplate="%{text}", textposition="outside")
             #font = {"size": 14} - можно добавить в fig.update_layout
             fig.update_layout(xaxis={'categoryorder': 'total descending'}, uniformtext_minsize=9,
-                              uniformtext_mode="show")
+                              uniformtext_mode="show", modebar_remove=["autoscale", "lasso", "reset", "select"])
         return fig
 
 
@@ -120,14 +118,6 @@ def nav_panel_map_server(input: Inputs, output: Outputs, session: Session):
         return [
             (f"countries_compare{x}", reactives[x]) for x in range(input.amount_countries_compare())
         ]
-
-
-    @reactive.calc
-    def first_select():
-        input.amount_countries_compare()
-        with reactive.isolate():
-            var = reactive.value("Austria")
-        return var
 
     @render.ui
     @reactive.event(input.amount_countries_compare)

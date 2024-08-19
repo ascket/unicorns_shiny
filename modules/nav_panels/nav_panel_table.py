@@ -102,7 +102,9 @@ def nav_panel_table_ui(name: str):
                 faicons.icon_svg("circle-exclamation"),
                 ui.tags.p(
                     ui.tags.b("CTRL + left mouse button"),
-                    " to select or deselect multiple table rows to see more information about company"
+                    " to select or deselect multiple table rows ",
+                    ui.tags.b("and scroll down"),
+                    " to see more information about company"
                 ),
                 title="Hint: select rows",
                 style="text-align: right; font-size: 1.2rem; color: #23669d",

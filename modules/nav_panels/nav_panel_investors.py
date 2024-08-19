@@ -2,9 +2,7 @@ import plotly.express as px
 from shiny import Inputs, Outputs, Session, ui, module
 from shinywidgets import render_plotly, output_widget
 
-from shared import get_investor_industry_data_frame
-
-df_investors_industry = get_investor_industry_data_frame()
+from shared import df_investors_industry
 
 
 @module.ui

@@ -33,6 +33,9 @@ class CompanyFull(NamedTuple):
     financials_investments: str | None
     iso_alpha: str
     continent: str
+    year_joined: str
+    month_joined: str
+    day_joined: str
 
 
 class CompanyOverview(NamedTuple):

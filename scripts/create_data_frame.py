@@ -27,7 +27,7 @@ def investor_industry_data_frame(df: pd.DataFrame) -> pd.DataFrame:
     investors_industry_dict = {}
     for _, row in df.iterrows():
         if not isinstance(row["investors_list"], float):
-            for investor in row["investors_list"]:
+            for investor in set(row["investors_list"]):#в таблице-источнике у компании Skydio инвестор Andreessen Horowitz прописан 2 раза, поэтому приходится брать set для удаления этого дубля
                 investors_industry_dict.setdefault(investor, list()).append(row["industry"])
 
     i2 = {}

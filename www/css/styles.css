@@ -323,3 +323,53 @@ div.company-table-value-box > div > div > div.value-box-showcase.html-fill-item.
     background-color: #2a7cc4!important;
     color: white;
 }
+
+/*
+About Page
+ */
+.about-page.custom-user-img.img-responsive{
+    border: 3px solid #2a7cc4;
+    border-radius: 50%;
+    box-shadow: 0 0 5px;
+}
+
+.about-page-card-row{
+    justify-content: center;
+}
+
+
+.row.about-page-card-row>.col-sm-6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.about-page-card-developer>.card-header, .about-page-card-source>.card-header{
+    background-color: #2a7cc4;
+    color: white;
+}
+
+.about-page-card-source>.card-body>.list-group {
+    margin-top: 0;
+}
+
+.about-page-card-source>.card-body>.list-group>li {
+    border: none;
+}
+
+.row.about-page-card-row>.col-sm-6>.fa{
+    margin-left: 0!important;
+}
+
+.row.about-page-card-row>:nth-of-type(1)>.fa{
+    color: #2a7cc4;
+}
+
+.row.about-page-card-row>:nth-of-type(2)>.fa{
+    color: #3298a1;
+}
+
+.about-page-card-developer>.card-body>.box-body>p.text-center{
+    margin-bottom: 25px;
+}
