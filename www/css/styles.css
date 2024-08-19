@@ -12,7 +12,7 @@ body {
     padding: 0;
 }
 
-.col-sm-10{
+.col-sm-10 {
     min-height: 100vh;
     /*width: 85%;*/
     overflow: hidden;
@@ -21,7 +21,7 @@ body {
 }
 
 /* Иначе появляется ненужное растягивание секции ul с этими классами вниз при использовании ui.value_box(), т.к. этот виджет добавляет стиль height: 100% для этого ul */
-.nav.nav-pills.nav-stacked{
+.nav.nav-pills.nav-stacked {
     height: auto !important;
 }
 
@@ -41,19 +41,19 @@ body {
         display: none;
     }
 
-    .d-flex{
+    .d-flex {
         border-bottom: 1px solid #dee2e6;
         padding: .7rem 1rem .7rem 1rem;
     }
 
-    .col-sm-2 .d-flex{
+    .col-sm-2 .d-flex {
         /*border-bottom: 1px solid #4c545c;*/
         padding: 1rem 1.5rem 1.6rem 1.4rem;
         border: none;
         flex-wrap: wrap;
     }
 
-    .col-sm-2.well.expand .d-flex{
+    .col-sm-2.well.expand .d-flex {
         justify-content: center;
         padding-top: 1rem;
     }
@@ -81,15 +81,15 @@ body {
         color: #2a7cc4;
     }
 
-    .col-sm-2.well.expand a.nav-link i{
+    .col-sm-2.well.expand a.nav-link i {
         margin-right: 0;
     }
 
-    .col-sm-2.well.expand{
+    .col-sm-2.well.expand {
         text-align: center;
     }
 
-    .col-sm-2.well.expand .d-flex i{
+    .col-sm-2.well.expand .d-flex i {
         /*margin: 0 auto 5px;*/
         margin: auto 0;
     }
@@ -140,29 +140,29 @@ body {
 }
 
 @media (max-width: 840px) {
-    .toggle-btn, .col-sm-2 .d-flex i{
+    .toggle-btn, .col-sm-2 .d-flex i {
         display: none;
     }
 
-    .sidebar-logo{
+    .sidebar-logo {
         width: 100%;
         padding: 10px 20px 15px 20px;
     }
 }
 
-ul.nav.nav-pills{
+ul.nav.nav-pills {
     padding: 0 15px 15px 15px;
 }
 
-.nav-link, .nav-tabs>li>a, .nav-pills>li>a{
+.nav-link, .nav-tabs > li > a, .nav-pills > li > a {
     color: #fafbfe;
 }
 
-.nav-link, .nav-tabs>li>a, .nav-pills>li>a:hover {
+.nav-link, .nav-tabs > li > a, .nav-pills > li > a:hover {
     color: #76a8e3;
 }
 
-.nav-pills .nav-link.active, .nav-pills .nav-tabs>li>a.active, .nav-pills>li>a.active{
+.nav-pills .nav-link.active, .nav-pills .nav-tabs > li > a.active, .nav-pills > li > a.active {
     color: #fafbfe;
 }
 
@@ -171,7 +171,7 @@ ul.nav.nav-pills{
     margin-right: .75rem;
 }
 
-.tab-content{
+.tab-content {
     padding: 1rem;
 }
 
@@ -227,7 +227,7 @@ a.nav-link:hover {
     margin-bottom: 20px;
 }*/
 
-.list-group-unbordered>.list-group-item {
+.list-group-unbordered > .list-group-item {
     border-left: 0;
     border-right: 0;
     border-radius: 0;
@@ -272,7 +272,7 @@ a.nav-link:hover {
     margin: 0 0 10px;
 }
 
-.nav-text{
+.nav-text {
     vertical-align: text-bottom;
     font-size: 16px;
     margin-left: 10px;
@@ -285,22 +285,22 @@ a.nav-link:hover {
     font-weight: 700;
 }
 
-.box-body hr{
+.box-body hr {
     margin: 1.3rem 0;
 }
 
-.bslib-value-box .value-box-showcase .fa{
-    opacity: 1!important;
+.bslib-value-box .value-box-showcase .fa {
+    opacity: 1 !important;
 }
 
 
-div.company-table-value-box > div > div > div.value-box-showcase.html-fill-item.html-fill-container{
+div.company-table-value-box > div > div > div.value-box-showcase.html-fill-item.html-fill-container {
     background: #08659b;
-    padding: 4rem!important;
+    padding: 4rem !important;
 }
 
 
-#clearrowspanel{
+#clearrowspanel {
     padding-bottom: 5px;
     padding-top: 20px;
 }
@@ -319,57 +319,73 @@ div.company-table-value-box > div > div > div.value-box-showcase.html-fill-item.
 }
 
 
-.shiny-data-grid.shiny-data-grid-grid > table > thead > tr > th, .shiny-data-grid.shiny-data-grid-grid > table > thead > tr > td{
-    background-color: #2a7cc4!important;
+.shiny-data-grid.shiny-data-grid-grid > table > thead > tr > th, .shiny-data-grid.shiny-data-grid-grid > table > thead > tr > td {
+    background-color: #2a7cc4 !important;
     color: white;
 }
 
 /*
 About Page
  */
-.about-page.custom-user-img.img-responsive{
+.about-page.custom-user-img.img-responsive {
     border: 3px solid #2a7cc4;
     border-radius: 50%;
     box-shadow: 0 0 5px;
 }
 
-.about-page-card-row{
+.about-page-card-row {
     justify-content: center;
 }
 
 
-.row.about-page-card-row>.col-sm-6 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.row.about-page-card-row > .col-sm-6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
-.about-page-card-developer>.card-header, .about-page-card-source>.card-header{
+.about-page-card-developer > .card-header, .about-page-card-source > .card-header {
     background-color: #2a7cc4;
     color: white;
 }
 
-.about-page-card-source>.card-body>.list-group {
+.about-page-card-source > .card-body > .list-group {
     margin-top: 0;
 }
 
-.about-page-card-source>.card-body>.list-group>li {
+.about-page-card-source > .card-body > .list-group > li {
     border: none;
 }
 
-.row.about-page-card-row>.col-sm-6>.fa{
-    margin-left: 0!important;
+.row.about-page-card-row > .col-sm-6 > .fa {
+    margin-left: 0 !important;
 }
 
-.row.about-page-card-row>:nth-of-type(1)>.fa{
+.row.about-page-card-row > :nth-of-type(1) > .fa {
     color: #2a7cc4;
 }
 
-.row.about-page-card-row>:nth-of-type(2)>.fa{
+.row.about-page-card-row > :nth-of-type(2) > .fa {
     color: #3298a1;
 }
 
-.about-page-card-developer>.card-body>.box-body>p.text-center{
+.about-page-card-developer > .card-body > .box-body > p.text-center {
     margin-bottom: 25px;
 }
+
+.alert.alert-dismissible.alert-light {
+    border-radius: 10px;
+}
+
+
+.btn-close.btn-close-blue {
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2323669d'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;
+    opacity: 1;
+}
+
+.alert.alert-dismissible.alert-light > p.about-unicorns {
+    color: var(--bs-body-color);
+}
+
+

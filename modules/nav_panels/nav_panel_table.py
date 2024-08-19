@@ -7,8 +7,6 @@ from shiny import module
 from modules.custom_ui.about_company_box import about_company_box
 from shared import df
 
-
-
 date_joined_date_range_params = {
     "min": df["date_joined"].min(),
     "max": df["date_joined"].max(),
@@ -32,7 +30,7 @@ valuation_slider_params = {
     "value": (df_min_valuation, df_max_valuation)
 }
 
-#two_days = timedelta(days=2)
+# two_days = timedelta(days=2)
 
 # pattern = r',[^,]|(?<![T, Co, Ltd, Corp, Inc, U, S, e.])\.\s*|,,\s*'
 # df_dropna_investors = df.dropna(subset=["investors"])
@@ -50,6 +48,10 @@ all_investors_list = list(set(all_investors_list))
 def nav_panel_table_ui(name: str):
     return ui.nav_panel(
         ui.tags.span(name),
+        ui.HTML("""<div class="alert alert-dismissible alert-light">
+                      <button type="button" class="btn-close btn-close-blue" data-bs-dismiss="alert"></button>
+                      <p class="about-unicorns">A <b>unicorn company</b> is a privately held startup company valued at <b>over $1 billion</b>. The term was coined by venture capitalist Aileen Lee in 2013, referencing the mythical creature to symbolize the rarity of such successful startups.</p>
+                    </div>"""),
         ui.layout_column_wrap(
             ui.value_box(
                 "Total Number of Companies".upper(),
@@ -75,7 +77,7 @@ def nav_panel_table_ui(name: str):
             ui.input_select("companys", "Company", choices=df["company_name"].unique().tolist(),
                             selectize=True, multiple=True,
                             options=({"placeholder": "All", "plugins": ["clear_button"]})),
-            ui.input_slider("valuation", "Valuation", step=1, **valuation_slider_params),
+            ui.input_slider("valuation", "Valuation ($B)", step=1, **valuation_slider_params),
             # ui.input_date_range("date_joined_slider", "Date", **date_joined_date_range_params),
             ui.input_slider("date_joined_slider", "Date Joined", time_format="%Y-%m",
                             **date_joined_slider_params),
@@ -130,8 +132,8 @@ def nav_panel_table_server(input: Inputs, output: Outputs, session: Session):
     def selected_table():
         dates = input.date_joined_slider()
         # На локальной машине даты, кот. приходят из слайдера, на 1 час меньше реальных дат, кот. передаются в слайдер. Поэтому, даты из слайдера после "округления" не совпадают на 1 день с реальными датами. Чтобы это исправить, дорабатываю даты из слайдена так: отнимаю 2 дня от начальной даты и прибаляю 2 дня к конечной дате. Это просто расширяет диапазон дат, по которым берутся данные из дата фрейма.
-        #start_time = dates[0] - two_days
-        #end_time = dates[1] + two_days
+        # start_time = dates[0] - two_days
+        # end_time = dates[1] + two_days
         start_time = dates[0]
         end_time = dates[1]
         # print(start_time)
@@ -263,7 +265,7 @@ def nav_panel_table_server(input: Inputs, output: Outputs, session: Session):
                     input.date_joined_slider, input.investors)
     def _():
         # timedelta(days=1) прибавляю 1 день, т.к. из слайдера приходят даты на 1-2 часа меньше реальных. Проблема выходит на локальной машине. Думаю, что проблема из-за часовых поясов, при заливке на сервер shinyapps проблема исчезает, т.к. сервер бежит в USA. Если запускаешь на локальной машине, то замени input.date_joined_slider() != date_joined_slider_params["value"] на
-        #(input.date_joined_slider()[0] + timedelta(days=1), input.date_joined_slider()[1] + timedelta(days=1)) != date_joined_slider_params["value"]
+        # (input.date_joined_slider()[0] + timedelta(days=1), input.date_joined_slider()[1] + timedelta(days=1)) != date_joined_slider_params["value"]
         if input.companys() \
                 or input.country() \
                 or input.investors() \
