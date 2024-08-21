@@ -6,9 +6,9 @@
 
 const colSm = document.querySelector("ul.nav.nav-pills.nav-stacked")
 colSm.insertAdjacentHTML('beforebegin', '<div class="d-flex">\n' +
-    '                    <i class="lni lni-python"></i>\n' +
+    '                    <i class="lni lni-world"></i>\n' +
     '                <div class="sidebar-logo">\n' +
-    '                    <a href="#">Shiny Dashboard</a>\n' +
+    '                    <a href="#">Unicorn Companies</a>\n' +
     '                </div>\n' +
     '            </div>')
 
