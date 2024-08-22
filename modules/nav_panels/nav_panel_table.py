@@ -6,6 +6,7 @@ from shiny import module
 
 from modules.custom_ui.about_company_box import about_company_box
 from shared import df
+import pandas as pd
 
 date_joined_date_range_params = {
     "min": df["date_joined"].min(),
@@ -14,8 +15,11 @@ date_joined_date_range_params = {
     "end": df["date_joined"].max()
 }
 
-df_min_date_datetime = datetime.strptime(df["date_joined"].min(), "%Y-%m-%d").date()
-df_max_date_datetime = datetime.strptime(df["date_joined"].max(), "%Y-%m-%d").date()
+#df_min_date_datetime = datetime.strptime(df["date_joined"].min(), "%Y-%m-%d").date() - ВНИМАНИЕ: работает с ошибкой
+#df_max_date_datetime = datetime.strptime(df["date_joined"].max(), "%Y-%m-%d").date() - ВНИМАНИЕ: работает с ошибкой, описание см. ниже
+# Если даты из дата фрейма преобразовывать с помощью datetime.strptime, то на локальной машине даты, кот. приходят из слайдера, на 1 час меньше реальных дат, кот. передаются в слайдер. Поэтому, даты из слайдера после "округления" не совпадают на 1 день с реальными датами. Чтобы это исправить, дорабатываю даты из слайдена так: отнимаю 2 дня от начальной даты и прибаляю 2 дня к конечной дате. Это просто расширяет диапазон дат, по которым берутся данные из дата фрейма. Из-за этой ошибки преобразую даты с помощь pd.Timestamp
+df_min_date_datetime = pd.Timestamp(df["date_joined"].min())
+df_max_date_datetime = pd.Timestamp(df["date_joined"].max())
 date_joined_slider_params = {
     "min": df_min_date_datetime,
     "max": df_max_date_datetime,
@@ -131,7 +135,7 @@ def nav_panel_table_server(input: Inputs, output: Outputs, session: Session):
     @reactive.calc
     def selected_table():
         dates = input.date_joined_slider()
-        # На локальной машине даты, кот. приходят из слайдера, на 1 час меньше реальных дат, кот. передаются в слайдер. Поэтому, даты из слайдера после "округления" не совпадают на 1 день с реальными датами. Чтобы это исправить, дорабатываю даты из слайдена так: отнимаю 2 дня от начальной даты и прибаляю 2 дня к конечной дате. Это просто расширяет диапазон дат, по которым берутся данные из дата фрейма.
+        # Если даты из дата фрейма преобразовывать с помощью datetime.strptime, то на локальной машине даты, кот. приходят из слайдера, на 1 час меньше реальных дат, кот. передаются в слайдер. Поэтому, даты из слайдера после "округления" не совпадают на 1 день с реальными датами. Чтобы это исправить, дорабатываю даты из слайдена так: отнимаю 2 дня от начальной даты и прибаляю 2 дня к конечной дате. Это просто расширяет диапазон дат, по которым берутся данные из дата фрейма. Из-за этой ошибки преобразую даты с помощь pd.Timestamp
         # start_time = dates[0] - two_days
         # end_time = dates[1] + two_days
         start_time = dates[0]
