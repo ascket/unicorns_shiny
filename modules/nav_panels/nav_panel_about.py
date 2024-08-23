@@ -37,7 +37,15 @@ def nav_panel_about_ui(name: str):
                         ),
                         ui.row(
                             ui.column(
-                                6,
+                                4,
+                                faicons.icon_svg("github"),
+                                ui.tags.a(
+                                    {"href": "https://github.com/ascket", "target": "_blank"},
+                                    "GitHub"
+                                )
+                            ),
+                            ui.column(
+                                4,
                                 faicons.icon_svg("linkedin"),
                                 ui.tags.a(
                                     {"href": "https://www.linkedin.com/in/a-shapovalov/", "target": "_blank"},
@@ -45,7 +53,7 @@ def nav_panel_about_ui(name: str):
                                 )
                             ),
                             ui.column(
-                                6,
+                                4,
                                 faicons.icon_svg("square-xing"),
                                 ui.tags.a(
                                     {"href": "https://www.xing.com/profile/Alexey_Shapovalov", "target": "_blank"},

@@ -1,6 +1,3 @@
-# ГОТОВЫЙ!
-# Quelle: https://github.com/codzsword/sidebar-bootstrap/tree/main
-# Чистый код в 02_bootstrap_sidebar.py
 # Не решённые улучшения:
 # - обновлять choices в фильтрах при обнолении таблицы
 # - запоминать плашки с информацией о компании, когда обновляется фильтр

@@ -112,7 +112,7 @@ def nav_panel_table_ui(name: str):
                     ui.tags.b("and scroll down"),
                     " to see more information about company"
                 ),
-                title="Hint: select rows",
+                title="Select rows",
                 style="text-align: right; font-size: 1.2rem; color: #23669d",
             ),
             # ui.input_switch("save_selected_rows_switch", "Save rows?"),

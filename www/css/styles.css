@@ -338,7 +338,10 @@ About Page
 }
 
 
-.row.about-page-card-row > .col-sm-6 {
+/*
+если 2 колонки, то замени на .col-sm-6
+ */
+.row.about-page-card-row > .col-sm-4 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -358,15 +361,15 @@ About Page
     border: none;
 }
 
-.row.about-page-card-row > .col-sm-6 > .fa {
+.row.about-page-card-row > .col-sm-4 > .fa {
     margin-left: 0 !important;
 }
 
-.row.about-page-card-row > :nth-of-type(1) > .fa {
+.row.about-page-card-row > :nth-of-type(2) > .fa {
     color: #2a7cc4;
 }
 
-.row.about-page-card-row > :nth-of-type(2) > .fa {
+.row.about-page-card-row > :nth-of-type(3) > .fa {
     color: #3298a1;
 }
 
