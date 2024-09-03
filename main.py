@@ -1,5 +1,4 @@
 from shiny import App, Inputs, Outputs, Session, ui
-
 from modules import nav_panel_table_ui, nav_panel_table_server, nav_panel_map_ui, nav_panel_map_server, nav_panel_investors_ui, nav_panel_investors_server, nav_panel_about_server, nav_panel_about_ui
 from shared import www_dir
 
