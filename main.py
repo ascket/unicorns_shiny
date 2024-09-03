@@ -1,7 +1,3 @@
-# Не решённые улучшения:
-# - обновлять choices в фильтрах при обнолении таблицы
-# - запоминать плашки с информацией о компании, когда обновляется фильтр
-
 from shiny import App, Inputs, Outputs, Session, ui
 
 from modules import nav_panel_table_ui, nav_panel_table_server, nav_panel_map_ui, nav_panel_map_server, nav_panel_investors_ui, nav_panel_investors_server, nav_panel_about_server, nav_panel_about_ui
@@ -47,7 +43,5 @@ def server(input: Inputs, output: Outputs, session: Session):
 
 app = App(app_ui, server, static_assets=www_dir)
 
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app)
+if __name__ == '__main__':
+    uvicorn.run('main:app', host='0.0.0.0', port=8000)
