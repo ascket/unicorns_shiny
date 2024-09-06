@@ -1,8 +1,5 @@
-import plotly.express as px
-from shiny import Inputs, Outputs, Session, ui, module
-from shinywidgets import render_plotly, output_widget
-from modules.custom_ui.about_company_box import about_company_box
 import faicons
+from shiny import Inputs, Outputs, Session, ui, module
 
 
 # Source: The Complete List Of Unicorn Companies (CB Insights)
