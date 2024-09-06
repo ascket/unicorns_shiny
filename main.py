@@ -1,11 +1,11 @@
 from shiny import App, Inputs, Outputs, Session, ui
 from modules import nav_panel_table_ui, nav_panel_table_server, nav_panel_map_ui, nav_panel_map_server, nav_panel_investors_ui, nav_panel_investors_server, nav_panel_about_server, nav_panel_about_ui
-from shared import www_dir
+from shared import pill_list_js_path, styles_file_path, www_dir
 import uvicorn
 
 app_ui = ui.page_fluid(
     ui.head_content(
-        ui.include_css(www_dir / "css" / "styles.css"),
+        ui.include_css(styles_file_path),
         ui.tags.link(
             {
                 "rel": "shortcut icon", "href": "https://steelsport.de/img/favicon.ico"
@@ -30,7 +30,7 @@ app_ui = ui.page_fluid(
             )
         )
     ),
-    ui.include_js(www_dir / "js" / "pill_list_nav.js"),
+    ui.include_js(pill_list_js_path),
     title="Unicorn companies"
 )
 
