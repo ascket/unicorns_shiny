@@ -90,7 +90,7 @@ def nav_panel_about_ui(name: str):
                             "Last update",
                             ui.tags.p(
                                 {"class": "pull-right"},
-                                "19.08.2024"
+                                "06.09.2024"
                             )
                         ),
                     ),

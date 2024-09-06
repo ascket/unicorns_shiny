@@ -1,0 +1,55 @@
+country,count_per_country,count_valuation_per_country,iso_alpha,continent
+Argentina,1,2.45,ARG,Americas
+Australia,9,42.33,AUS,Oceania
+Austria,2,7.61,AUT,Europe
+Belgium,3,10.08,BEL,Europe
+Bermuda,1,1.6,BMU,Americas
+Brazil,17,35.589999999999996,BRA,Americas
+Canada,20,51.0,CAN,Americas
+Cayman Islands,1,1.0,CYM,Americas
+Chile,2,2.5,CHL,Americas
+China,167,636.91,CHN,Asia
+Colombia,3,7.4,COL,Americas
+Croatia,2,3.0,HRV,Europe
+Czech Republic,1,1.2,CZE,Europe
+Denmark,2,6.7,DNK,Europe
+Ecuador,1,1.5,ECU,Americas
+Egypt,1,1.0,EGY,Africa
+Estonia,2,9.9,EST,Europe
+Finland,4,12.46,FIN,Europe
+France,27,66.25,FRA,Europe
+Germany,31,85.9,DEU,Europe
+Greece,2,3.32,GRC,Europe
+Hong Kong,8,11.35,HKG,Asia
+India,70,191.14,IND,Asia
+Indonesia,7,10.43,IDN,Asia
+Ireland,7,11.05,IRL,Europe
+Israel,23,56.22,ISR,Asia
+Italy,3,4.55,ITA,Europe
+Japan,8,10.82,JPN,Asia
+Liechtenstein,1,1.0,LIE,Europe
+Lithuania,2,7.53,LTU,Europe
+Luxembourg,1,2.0,LUX,Europe
+Malaysia,1,1.7,MYS,Asia
+Malta,1,1.0,MLT,Europe
+Mexico,8,18.7,MEX,Americas
+Netherlands,9,24.46,NLD,Europe
+Nigeria,1,2.0,NGA,Africa
+Norway,4,4.5,NOR,Europe
+Philippines,1,1.0,PHL,Asia
+Saudi Arabia,1,1.0,SAU,Asia
+Senegal,1,1.7,SEN,Africa
+Seychelles,2,11.8,SYC,Africa
+Singapore,17,94.11,SGP,Asia
+South Africa,1,1.59,ZAF,Africa
+South Korea,15,34.57,KOR,Asia
+Spain,5,7.15,ESP,Europe
+Sweden,6,21.62,SWE,Europe
+Switzerland,6,12.3,CHE,Europe
+Thailand,3,3.5,THA,Asia
+Turkey,3,13.55,TUR,Europe
+United Arab Emirates,5,7.55,ARE,Asia
+United Kingdom,55,178.82,GBR,Europe
+United States,667,2186.66,USA,Americas
+Uzbekistan,1,1.16,UZB,Asia
+Vietnam,2,5.27,VNM,Asia

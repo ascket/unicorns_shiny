@@ -129,7 +129,7 @@ dmypy.json
 .pyre/
 .idea/
 
-*.csv
+unicorns_alt.csv
 *training*.py
 rsconnect-python
 two_parsers.py
