@@ -20,9 +20,9 @@ colSm.insertAdjacentHTML('beforebegin', '<div class="d-flex"><button class="togg
 const hamBurger = document.querySelector(".toggle-btn");
 
 
-/* Чтобы левая панель была схлопнута при первом открытии страницы. Чтобы была открыта, просто закоментируй две строки снизу*/
+/* Чтобы левая панель была открыта при первом открытии страницы. Чтобы была схлопнута, просто разкоментируй две строки снизу
 document.querySelector(".col-sm-2.well").classList.toggle("expand");
-document.querySelector(".col-sm-10").classList.toggle("expand");
+document.querySelector(".col-sm-10").classList.toggle("expand");*/
 
 hamBurger.addEventListener("click", function () {
     document.querySelector(".col-sm-2.well").classList.toggle("expand");

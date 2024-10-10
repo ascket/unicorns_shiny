@@ -291,9 +291,9 @@ class Parser:
             pat=pattern)
         df_for_map = map_data_frame(df_from_parser)
         df_for_investors = investor_industry_data_frame(df_from_parser)
-        df_for_map.to_csv(os.path.join(root_dir, "map_df.csv"), index=False)
+        df_for_map.to_csv(os.path.join(root_dir, "map_df22.csv"), index=False)
         print(f"map_df.csv saved")
-        df_for_investors.to_csv(os.path.join(root_dir, "investors_df.csv"), index=False)
+        df_for_investors.to_csv(os.path.join(root_dir, "investors_df22.csv"), index=False)
         print(f"investors_df.csv saved")
 
     def __len__(self):
@@ -303,4 +303,4 @@ class Parser:
 if __name__ == '__main__':
     parser = Parser()
     parser.get_full_company_info_threading()
-    parser.write_results_as_csv_with_pandas("unicorns")
+    parser.write_results_as_csv_with_pandas("unicorns22")

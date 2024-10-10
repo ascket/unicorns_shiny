@@ -339,9 +339,9 @@ About Page
 
 
 /*
-если 2 колонки, то замени на .col-sm-6
+если 3 колонки, то замени на .col-sm-4
  */
-.row.about-page-card-row > .col-sm-4 {
+.row.about-page-card-row > .col-sm-6 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -361,7 +361,7 @@ About Page
     border: none;
 }
 
-.row.about-page-card-row > .col-sm-4 > .fa {
+.row.about-page-card-row > .col-sm-6 > .fa {
     margin-left: 0 !important;
 }
 
@@ -391,4 +391,7 @@ About Page
     color: var(--bs-body-color);
 }
 
+#gpt_chat, #llama_chat, #mistral_chat {
+    max-height: 500px;!important;
+}
 

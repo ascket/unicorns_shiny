@@ -34,7 +34,7 @@ def nav_panel_about_ui(name: str):
                         ),
                         ui.row(
                             ui.column(
-                                4,
+                                6,
                                 faicons.icon_svg("github"),
                                 ui.tags.a(
                                     {"href": "https://github.com/ascket", "target": "_blank"},
@@ -42,21 +42,24 @@ def nav_panel_about_ui(name: str):
                                 )
                             ),
                             ui.column(
-                                4,
+                                6,
                                 faicons.icon_svg("linkedin"),
                                 ui.tags.a(
                                     {"href": "https://www.linkedin.com/in/a-shapovalov/", "target": "_blank"},
                                     "Linkedin"
                                 )
                             ),
-                            ui.column(
-                                4,
-                                faicons.icon_svg("square-xing"),
-                                ui.tags.a(
-                                    {"href": "https://www.xing.com/profile/Alexey_Shapovalov", "target": "_blank"},
-                                    "Xing"
-                                )
-                            ),
+                            # ui.column(
+                            #     4,
+                            #     ui.tags.img(
+                            #         {"src":"https://dcmfe.datacamp.com/assets/favicon.ico", "alt": "DataCamp Logo", "style": "width: 14%; margin-right: 3px"}
+                            #     ),
+                            #     #faicons.icon_svg("square-xing"),
+                            #     ui.tags.a(
+                            #         {"href": "https://www.datacamp.com/portfolio/so434", "target": "_blank"},
+                            #         "DataCamp"
+                            #     )
+                            # ),
                             class_="about-page-card-row"
                         ),
                     ),
@@ -90,7 +93,7 @@ def nav_panel_about_ui(name: str):
                             "Last update",
                             ui.tags.p(
                                 {"class": "pull-right"},
-                                "06.09.2024"
+                                "10.10.2024"
                             )
                         ),
                     ),
